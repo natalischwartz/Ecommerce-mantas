@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt&family=Rubik:wght@300&display=swap');
+
+:root {
+    --color-main:#6aa577;
+    --color-main-light:#66c77b;
+    --color-botones: whitesmoke;
+    --color-gray:gray;
+    --color-red: red;
+}
+
+/*seteo de css*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif; ;
+}
+
+h1,h2,h3,h4,h5,h6,p,a,input,textarea {
+    margin:0;
+    padding: 0;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.wrapper{
+    display:grid;
+    grid-template-columns: 1fr 4fr;
+    background-color: var(--color-main);
+}
+
+aside{
+    padding: 2rem;
+    padding-right: 0;
+    color: var(--color-botones);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+
+}
+
+.logo{
+    font-weight: 400;
+    font-size: 1.3rem;
+    
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.boton-menu{
+    background-color: transparent;
+    border:0;
+    color: var(--color-botones);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    padding: 1rem;
+    font-size: .85rem;
+}
+
+.boton-menu.active {
+    background-color: var(--color-botones);
+    color: var(--color-main);
+    width: 100%;
+    border-bottom-left-radius:1rem;
+    border-top-left-radius:1rem;
+}
+
+
+.boton-menu > i.bi-hand-index-thumb-fill, 
+.boton-menu > i.bi-hand-index-thumb{
+    transform: rotateZ(90deg);
+}
+
+.boton-carrito{
+    margin-top: 2rem;
+}
+
+
+.texto-footer{
+    color: var(--color-main-light);
+    font-size: .85rem;
+}
+
+main{
+    background-color: var(--color-botones);
+    margin: 1rem;
+    margin-left: 0;
+    border-radius: 2rem;
+    padding: 3rem;
+    
+    
+}
+
+.titulo-principal{
+    color: var(--color-main);
+    margin-bottom: 2rem;
+}
+
+.contenedor-productos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    padding: 1rem;
+}
+
+.producto-imagen{
+    flex: 0 0 100%;
+    max-width: 100%;
+    max-height: 40vh;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.producto-detalles{
+    background-color: var(--color-main);
+    color: var(--color-botones);
+    padding:.5rem ;
+    border-radius: 1rem;
+    margin-top: -2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap:.25rem;
+}
+
+.producto-titulo{
+    font-size: 1rem;
+}
+
+.producto-agregar{
+    border: 0;
+    background-color: var(--color-botones);
+    color: var(--color-main);
+    padding: .5rem;
+    text-transform: uppercase;
+    border-radius: 2rem;
+    cursor: pointer;
+    border: 2px solid var(--color-botones);
+    transition: 0.2s;
+}
+
+.producto-agregar:hover{
+    background-color: var(--color-main);
+    color: var(--color-botones);
+}
+
+/*CARRITO*/
+
+
