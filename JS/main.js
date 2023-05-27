@@ -114,8 +114,9 @@ const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const tituloPrincipal = document.querySelector("#titulo-principal");
 let botonesAgregar = document.querySelectorAll(".producto-agregar");
+const numerito = document.querySelector("#numerito");
 
-console.log(botonesAgregar);
+
 
 
 
@@ -140,6 +141,9 @@ function cargarProductos(productosElegidos) {
         contenedorProductos.append(div);
 
     })
+
+    actualizarBotonesAgregar();
+    
 };
 
 //cuando cargue la pagina quiero que me muestre todos los productos
@@ -171,5 +175,46 @@ botonesCategorias.forEach(boton =>{
 });
 
 function actualizarBotonesAgregar () {
+    botonesAgregar = document.querySelectorAll(".producto-agregar");
+
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener("click", agregarAlCarrito);
+
+
+    });
     
 }
+
+const productosEnCarrito = [];
+
+
+//esta funcion tiene que agregar los elemnentos a un array
+function agregarAlCarrito(e) {
+    const idBoton = e.currentTarget.id; // en esta variable se guarda el id del producto que estoy clickeando
+    const productoAgregado = productos.find(producto => producto.id === idBoton);// me devuelve todo el objeto, todo el producto.
+    
+    //si agregamos el mismo producto y ya se encuentra en el carrito , no quiero que se vuelva a agregar, sino que aumente la cantidad.
+    //chequeamos que el producto clickeado exista en el array de productosEnCarrito
+    if(productosEnCarrito.some(producto => producto.id === idBoton)){
+        // si nos devuelve true, subirle la cantidad
+        //buscamos el index del producto que ya existe en el carrito 
+    const index = productosEnCarrito.findIndex(producto => producto.id ===idBoton);
+    productosEnCarrito[index].cantidad++
+
+    }else{
+        productoAgregado.cantidad = 1; // estoy agregando en el objeto una nueva propiedad, cantidad: 1.
+        productosEnCarrito.push(productoAgregado);
+    } 
+    //cada vez que agrego un producto al carrito, se actualice el numerito
+    actualizarNumerito();
+    
+    //cada vez que agregamos algo al carrito lo guardamos en el local storage
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+
+}
+
+function actualizarNumerito() {
+    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad,0 ) // suma las cantidades de productos que hay agregado en el array productosEnCarrito
+    numerito.textContent = nuevoNumerito;
+}
+
