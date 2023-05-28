@@ -185,7 +185,19 @@ function actualizarBotonesAgregar () {
     
 }
 
-const productosEnCarrito = [];
+let productosEnCarrito;
+
+const productosEnCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito"));
+if(productosEnCarritoLS){ //si hay algo en el local storage, si hay algo en el json.parse, que productosEnCarrito sea igual a lo que se traiga del local storage.
+    productosEnCarrito = productosEnCarritoLS;
+    actualizarNumerito();
+
+
+}else{
+    productosEnCarrito = [];
+}
+
+;
 
 
 //esta funcion tiene que agregar los elemnentos a un array
