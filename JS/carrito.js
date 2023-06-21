@@ -8,9 +8,10 @@ const contenedorCarritoAcciones = document.querySelector("#carrito-acciones");
 const textoCarritoComprado = document.querySelector("#carrito-comprado");
 let botonesEliminar = document.querySelectorAll(".carrito-producto-eliminar");
 console.log(botonesEliminar);
+const botonVaciar = document.querySelector("#carrito-acciones-vaciar");
 
 function cargarProductosCarrito() {
-    if(productosEnCarrito){//si hay productos en carrito hacer algo en particular 
+    if(productosEnCarrito && productosEnCarrito.length > 0 ){//si hay productos en carrito hacer algo en particular 
         textoCarritoVacio.classList.add("disabled");
         contenedorCarritoProductos.classList.remove("disabled");
         contenedorCarritoAcciones.classList.remove("disabled");
@@ -50,7 +51,7 @@ function cargarProductosCarrito() {
         });
     
     }else{
-        //asi va acargar la pagina de carrito siempre
+        //asi va acargar la pagina de carrito siempre. Me aseguro que siempre pase esto 
     
         textoCarritoVacio.classList.remove("disabled");
         contenedorCarritoProductos.classList.add("disabled");
@@ -70,27 +71,33 @@ function actualizarBotonesEliminar () {
     
 }
 
-function eliminarDelCarrito(e){
-    const idBotonEliminar = e.currentTarget.productoEnCarrito.id;
-    const productoEliminado = productos.find(producto => producto.id === idBoton);// me devuelve todo el objeto, todo el producto.
-    
-    //si agregamos el mismo producto y ya se encuentra en el carrito , no quiero que se vuelva a agregar, sino que aumente la cantidad.
-    //chequeamos que el producto clickeado exista en el array de productosEnCarrito
-    if(productosEnCarrito.some(producto => producto.id === idBoton)){
-        // si nos devuelve true, subirle la cantidad
-        //buscamos el index del producto que ya existe en el carrito 
-    const index = productosEnCarrito.findIndex(producto => producto.id ===idBoton);
-    productosEnCarrito[index].cantidad++
 
-    }else{
-        productoAgregado.cantidad = 1; // estoy agregando en el objeto una nueva propiedad, cantidad: 1.
-        productosEnCarrito.push(productoAgregado);
-    } 
-    //cada vez que agrego un producto al carrito, se actualice el numerito
-    actualizarNumerito();
+
+function eliminarDelCarrito(e){
     
-    //cada vez que agregamos algo al carrito lo guardamos en el local storage
+    const idBoton = e.currentTarget.id
+    console.log(idBoton); //nos trae el id de ese producto
+
+    //cuando hago click en el boton eliminar quiero que pasen varias cosas 
+    //necesito que busque  cual es el producto en el array de productos en carrito
+    
+    console.log(productosEnCarrito)
+
+    //traemos el index de ese producto , y hacemos un splice para eliminarlo del array
+    const index = productosEnCarrito.findIndex(productoEnCarrito => productoEnCarrito.id ===idBoton)
+    console.log(index);
+
+    productosEnCarrito.splice(index,1)
+
+    console.log(productosEnCarrito)
+
+    cargarProductosCarrito();
+
+    //que se guarde la actualizacion en el local storage
+
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 
 }
+
+//boton vaciar
 
