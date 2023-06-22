@@ -2,8 +2,8 @@
 
 
 :root {
-    --color-main:#6aa577;
-    --color-main-light:#146125;
+    --color-main: rgb(164, 32, 199);
+    --color-main-light:rgb(186, 126, 202);;
     --color-botones: whitesmoke;
     --color-gray:lightgrey;
     --color-red: red;
