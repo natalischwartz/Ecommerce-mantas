@@ -2,7 +2,7 @@
 
 
 :root {
-    --color-main: rgb(164, 32, 199);
+    --color-main: rgb(188, 87, 216);
     --color-main-light:rgb(186, 126, 202);;
     --color-botones: whitesmoke;
     --color-gray:lightgrey;
@@ -66,8 +66,9 @@ aside{
 }
 
 .logo{
-    font-weight: 400;
-    font-size: 1.3rem;
+    /*font-weight: 400;
+    font-size: 1.3rem;*/
+    width:100%;
     
 }
 
