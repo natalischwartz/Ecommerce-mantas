@@ -13,6 +13,12 @@ const contenedorTotal = document.querySelector("#total");
 console.log(contenedorTotal);
 const botonComprar = document.querySelector("#carrito-acciones-comprar");
 
+//FORMULARIO SUBMIT 
+const form = document.querySelector("#form");
+const formInputs =document.querySelector("#formInputs")
+
+console.log(formInputs);
+
 function cargarProductosCarrito() {
     if(productosEnCarrito && productosEnCarrito.length > 0 ){//si hay productos en carrito hacer algo en particular 
         textoCarritoVacio.classList.add("disabled");
@@ -50,6 +56,9 @@ function cargarProductosCarrito() {
         `;
     
         contenedorCarritoProductos.append(div);
+
+        
+       //SEGUIR DESDE ACA
     
         });
     
@@ -64,7 +73,7 @@ function cargarProductosCarrito() {
     
     actualizarBotonesEliminar();
     actualizarTotal();
-
+    crearFormularioProductosComprados ();
 }
 cargarProductosCarrito(); //queremos que se ejecute cuando carga la pagina y tambien que se ejecute cuando eliminamos un producto y se vuelvan a mostrar los productos nuevos del array y se refleje visualmente en la pagina de carrito
 
@@ -102,6 +111,7 @@ function eliminarDelCarrito(e){
 
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 
+    
 }
 
 
@@ -121,6 +131,10 @@ function actualizarTotal(){
     console.log(totalCalculado);
     
     contenedorTotal.textContent = `$${totalCalculado}`;
+
+    
+    
+
 }
 
 botonComprar.addEventListener("click", comprarCarrito);
@@ -134,5 +148,19 @@ function comprarCarrito(){
     contenedorCarritoProductos.classList.add("disabled");
     contenedorCarritoAcciones.classList.add("disabled");
     textoCarritoComprado.classList.remove("disabled");
+
     
+    
+}
+
+//FORMULARIO PEDIDO
+
+function crearFormularioProductosComprados () {
+    productosEnCarrito.forEach(productoEnCarrito => {
+        const div2 = document.createElement("div");
+        div2.innerHTML =`<input style="display-block" type="text" name="" value="${productoEnCarrito.titulo} ${productoEnCarrito.cantidad}">`;
+    
+        formInputs.append(div2);
+    })
+
 }

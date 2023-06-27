@@ -2,9 +2,9 @@
 
 
 :root {
-    --color-main: rgb(164, 32, 199);
+    --color-main:#6a1b9a;
     --color-main-light:rgb(186, 126, 202);;
-    --color-botones: whitesmoke;
+    --color-botones:#F5F1F1 ;
     --color-gray:lightgrey;
     --color-red: red;
 }
